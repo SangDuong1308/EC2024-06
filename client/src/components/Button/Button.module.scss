@@ -1,0 +1,64 @@
+.wrapper {
+    padding: 8px 16px;
+    width: 132px;
+    height: 48px;
+    border: solid 1px transparent;
+
+    font-size: 1.8rem;
+    cursor: pointer;
+
+    &.small {
+        padding: 4px 8px;
+        width: 68px;
+        height: 24px;
+        font-size: 1.4rem;
+    }
+
+    &.large {
+        padding: 16px 32px;
+        width: 196px;
+        height: 64px;
+        font-size: 2.2rem;
+    }
+}
+
+.theme {
+    background-color: var(--theme-color);
+    color: white;
+
+    &:hover {
+        background-color: #e95364;
+    }
+}
+
+.outline {
+    color: var(--theme-color);
+    background-color: transparent;
+    border: solid 1px var(--theme-color);
+
+    &:hover {
+        color: white;
+        border-color: white;
+    }
+}
+
+.rounded {
+    border-radius: 24px;
+}
+
+.icon {
+    padding: 4px;
+
+    &.left {
+        margin-right: 8px;
+    }
+
+    &.right {
+        margin-left: 8px;
+    }
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}

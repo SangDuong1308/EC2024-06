@@ -1,15 +1,19 @@
+import * as layouts from 'layouts';
+import * as pages from 'pages';
+
 const routes = [
     {
         path: '/',
-        element: <div>HOME</div>,
+        element: pages.HomePage,
+        layout: layouts.DefaultLayout,
     },
     {
         path: '/auth/login',
-        element: <div>LOGIN</div>,
+        element: pages.LoginPage,
     },
     {
         path: '/auth/register',
-        element: <div>REGISTER</div>,
+        element: () => <div>REGISTER</div>,
     },
 ];
 
