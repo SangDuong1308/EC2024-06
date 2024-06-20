@@ -1,5 +1,7 @@
+                                            routers => controllers => services => models
+
 ```
-server       routers => controllers => services => models
+server
 ├── README.md
 ├── package-lock.json
 ├── package.json
