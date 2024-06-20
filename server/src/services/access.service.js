@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const userModel = require('../models/user.model');
 const KeyTokenService = require('./keyToken.service');
 const { createTokenPair } = require('../auth/authUtils');
+const { getInfoData } = require('../utils');
 
 const roles = {
     USER: 'user',
@@ -71,7 +72,10 @@ class AccessService {
                 return {
                     code: 201,
                     metadata: {
-                        user: newUser,
+                        user: getInfoData({
+                            fields: ['_id', 'name', 'email', 'roles'],
+                            object: newUser,
+                        }),
                         tokens,
                     },
                 };
