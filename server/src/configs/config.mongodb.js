@@ -5,7 +5,8 @@ const dev = {
         port: process.env.DEV_APP_PORT || 3052,
     },
     db: {
-        host: process.env.DEV_DB_HOST || 'localhost',
+        // host: process.env.DEV_DB_HOST || 'localhost',
+        host: process.env.DEV_DB_HOST || 'mongodb+srv://duongphuocsang1308:Sang13082003@metrics.oygpt3c.mongodb.net',
         port: process.env.DEV_DB_PORT || 27017,
         name: process.env.DEV_DB_NAME || 'ecomDEV',
     },
@@ -16,7 +17,8 @@ const pro = {
         port: process.env.PRO_APP_PORT || 3000,
     },
     db: {
-        host: process.env.PRO_DB_HOST || 'localhost',
+        // host: process.env.PRO_DB_HOST || 'localhost',
+        host: process.env.PRO_DB_HOST || 'mongodb+srv://duongphuocsang1308:Sang13082003@metrics.oygpt3c.mongodb.net',
         port: process.env.PRO_DB_PORTT || 27017,
         name: process.env.PRO_DB_NAME || 'ecomPRO',
     },
