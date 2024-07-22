@@ -1,4 +1,4 @@
-                                            routers => controllers => services => models
+                                        routers => controllers => services => models
 
 ```
 server
