@@ -8,6 +8,7 @@ const KeyTokenService = require('./keyToken.service');
 const { createTokenPair } = require('../auth/authUtils');
 const { getInfoData } = require('../utils');
 const { ForbiddenRequestError } = require('../core/reponse/error.reponse');
+const keytokenModel = require('../models/keytoken.model');
 
 const roles = {
     USER: 'user',
@@ -63,7 +64,7 @@ class AccessService {
             // create token pair
             const tokens = await createTokenPair({ userId: newUser._id, email }, publicKeyObject, privateKey);
 
-            console.log(`Create token success:: `, tokens);
+            console.log(`Create token success:: `, tokens); 
 
             return {
                 code: 201,

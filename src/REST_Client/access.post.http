@@ -7,7 +7,7 @@ Content-Type: application/json
 x-api-key: acd4630e4250a8baee7e02ae770f12b4d44f20bfc0d254865c03035a85d02cea9e7bc0a9082586996a7f1f7544d78e437a8b390dab9ef44f383d0da1b314cb63
 
 {
-    "name": "Mudrik",
-    "email": "Mudrik@chelsea.com",
+    "name": "manuel",
+    "email": "manuel@chelsea.com",
     "password": "111"
 }  
