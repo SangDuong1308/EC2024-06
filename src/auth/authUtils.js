@@ -1,6 +1,9 @@
 'use strict';
 
 const JWT = require('jsonwebtoken');
+const { asyncHandler } = require('./checkAuth');
+const { BadRequest, AuthFailureError } = require('../constants/error.reponse');
+const { findByUserId } = require('../services/keyToken.service')
 
 const createTokenPair = async (payload, publicKey, privateKey) => {
     try {
@@ -29,4 +32,37 @@ const createTokenPair = async (payload, publicKey, privateKey) => {
     }
 };
 
-module.exports = { createTokenPair };
+const authentication = asyncHandler(async (req, res, next) => {
+    const userId = req.headers['x-client-id'];
+
+    if (!userId) {
+        throw new AuthFailureError('Missing required arguments!');
+    }
+
+    const accessToken = req.headers["x-authorization"];
+    if (!accessToken) {
+        throw new AuthFailureError('No token provided!');
+    }
+
+    const keyStore = await findByUserId(userId);
+    if (!keyStore) {
+        throw new AuthFailureError('KeyStore not found!');
+    }
+
+    try {
+
+    } catch(error) {
+        throw error
+    }
+    JWT.verify(accessToken, keyStore.publicKey, (err, decodedUser) => {
+        if (err) {
+            throw new AuthFailureError('Invalid access token.');
+        } else {
+            req.keyStore = keyStore;
+            req.user = decodedUser;
+        }
+    });
+    return next();
+});
+
+module.exports = { createTokenPair, authentication };
