@@ -25,6 +25,7 @@ const userSchema = new Schema(
         },
         gender: {
             type: String,
+            enum: ['male', 'female']
         },
         phoneNumber: {
             type: String,
@@ -41,9 +42,9 @@ const userSchema = new Schema(
             type: Schema.Types.Boolean,
             default: false,
         },
-        roles: {
+        role: {
             type: String,
-            enum: ['user', 'admin', 'kitchen'],
+            enum: ['user', 'admin', 'kitchen', 'shipper'],
             default: [],
         },
     },
