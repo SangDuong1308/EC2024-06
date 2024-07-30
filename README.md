@@ -1,19 +1,19 @@
-                                    routers => controllers => services => models
-
-```
-server
+ ```
+ server
 ├── README.md
+├── Tree.md
 ├── package-lock.json
 ├── package.json
 ├── server.js
 └── src
-    ├── REST_Client
-    │   └── access.post.http
     ├── app.js
-    ├── auth
-    │   └── authUtils.js
     ├── configs
     │   └── config.mongodb.js
+    ├── constants
+    │   ├── error.reponse.sjs
+    │   ├── httpStatusCode.js
+    │   ├── statusDescription.js
+    │   └── success.response.js
     ├── controllers
     │   └── access.controller.js
     ├── dbs
@@ -31,7 +31,11 @@ server
     │       └── index.js
     ├── services
     │   ├── access.service.js
-    │   └── keyToken.service.js
+    │   ├── keyToken.service.js
+    │   └── user.service.js
     └── utils
+        ├── auth.js
+        ├── checkAuth.js
+        ├── errorHandler.js
         └── index.js
 ```

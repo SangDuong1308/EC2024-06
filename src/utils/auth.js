@@ -1,0 +1,112 @@
+'use strict';
+
+const JWT = require('jsonwebtoken');
+const { asyncHandler } = require('./checkAuth');
+const { BadRequest, AuthFailureError, Api404Error } = require('../constants/error.reponse');
+const { findByUserId, removeKeyById } = require('../services/keyToken.service')
+const keytokenModel = require('../models/keytoken.model');
+const createTokenPair = async (payload, publicKey, privateKey) => {
+    try {
+        // access Token
+        const accessToken = await JWT.sign(payload, publicKey, {
+            // algorithm: 'RS256',
+            expiresIn: '2 days',
+        });
+
+        const refreshToken = await JWT.sign(payload, privateKey, {
+            // algorithm: 'RS256',
+            expiresIn: '7 days',
+        });
+
+        JWT.verify(accessToken, publicKey, (err, decoded) => {
+            if (err) {
+                console.error(`error verify::`, err);
+            } else {
+                console.log(`decode verify::`, decoded);
+            }
+        });
+
+        return { accessToken, refreshToken };
+    } catch (error) {
+        return error;
+    }
+};
+
+const authentication = asyncHandler(async (req, res, next) => {
+    const userId = req.headers['x-client-id'];
+
+    if (!userId) {
+        throw new AuthFailureError('Missing required arguments!');
+    }
+
+    const accessToken = req.headers['x-authorization'];
+    if (!accessToken) {
+        throw new AuthFailureError('No token provided!');
+    }
+
+    const keyStore = await findByUserId(userId);
+    if (!keyStore) {
+        throw new AuthFailureError('KeyStore not found!');
+    }
+
+    JWT.verify(accessToken, keyStore.publicKey, (err, decodedUser) => {
+        if (err) {
+            throw new AuthFailureError('Invalid access token.');
+            // console.error('Invalid access token.', err);
+        } else {
+            req.keyStore = keyStore;
+            req.user = decodedUser;
+        }
+    });
+    return next();
+});
+
+const handleRefreshToken = asyncHandler( async (req, res, next) => {
+    const userId = req.headers['x-client-id'];
+    const refreshToken = req.headers['x-refresh-token'];
+
+    if (!userId || !refreshToken) {
+        throw new AuthFailureError('Missing refresh token!');
+    }
+
+    const keyStore = await findByUserId(userId);
+    if (!keyStore) {
+        throw new Api404Error('KeyStore not found!');
+    }
+
+    if (keyStore.refreshTokensUsed.includes(refreshToken)) {
+        await removeKeyById(keyStore._id);
+        throw new AuthFailureError('Refresh token has been used!');
+    }
+
+    if (keyStore.refreshToken !== refreshToken)
+        throw new AuthFailureError("Invalid refresh token");
+
+
+    let email;
+
+    JWT.verify(refreshToken, keyStore.publicKey, (err, decodedUser) => {
+        if (err) {
+            // throw new AuthFailureError('Invalid refresh token.');
+            console.error('Invalid refresh token.', err);
+        } else {
+            email = decodedUser.email;
+        }
+    });
+
+    const newTokens = await createTokenPair({userId, email}, keyStore.publicKey, keyStore.privateKey);
+
+    await keytokenModel.findByIdAndUpdate(
+        keyStore._id,
+        {
+            refreshToken: newTokens.refreshToken,
+            $push: { refreshTokensUsed: keyStore.refreshToken },
+        },
+        { new: true }
+    );
+
+    // return newTokens;
+    res.status(200).json(newTokens);
+})
+
+module.exports = { createTokenPair, authentication, handleRefreshToken };

@@ -28,7 +28,7 @@ class AccessController {
             message: 'Logout successfully!',
             metadata: await AccessService.logout(req.keyStore)
         }).send(res)
-    }
+    };
 }
 
 module.exports = new AccessController();

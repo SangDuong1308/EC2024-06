@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 const userModel = require('../models/user.model');
 const KeyTokenService = require('./keyToken.service');
-const { createTokenPair } = require('../auth/authUtils');
+const { createTokenPair } = require('../utils/auth');
 const { getInfoData } = require('../utils');
 const keytokenModel = require('../models/keytoken.model');
 const { ForbiddenRequest, BadRequest, InternalServerError } = require('../constants/error.reponse');
@@ -107,10 +107,9 @@ class AccessService {
 
     static logout = async ( keyStore ) => {
         const delKey = await KeyTokenService.removeKeyById(keyStore._id);
-        console.log({delKey});
+        console.log({ delKey });
         return delKey;
     }
-
 }
 
 module.exports = AccessService;
