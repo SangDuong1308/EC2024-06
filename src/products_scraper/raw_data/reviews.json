@@ -1,0 +1,345 @@
+[
+    {
+        "author":"Nancy",
+        "review_title":"Nice",
+        "review_text":"Nice",
+        "rating":5,
+        "city":"Noida",
+        "area":"Sector 110",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Our Classic Chocolate Truffle Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Boopalan",
+        "review_title":"Nice",
+        "review_text":"Nice",
+        "rating":4,
+        "city":"Bangalore",
+        "area":"Jayanagar",
+        "occasion":"Birthday",
+        "order_rating":4,
+        "title":"Original Black Forest Cake",
+        "postdate":"4th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"akshay",
+        "review_title":"Awesome cake and timely deli",
+        "review_text":"Awesome cake and timely delivery",
+        "rating":5,
+        "city":"Delhi",
+        "area":"Vasant Kunj",
+        "occasion":"",
+        "order_rating":5,
+        "title":"Our Classic Chocolate Truffle Cake",
+        "postdate":"4th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Sarthak",
+        "review_title":"Cake was really good",
+        "review_text":"Cake was really good",
+        "rating":5,
+        "city":"Delhi",
+        "area":"Shastri Nagar",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Classic Blueberry Cheesecake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Ritu",
+        "review_title":"Very nice",
+        "review_text":"Very nice",
+        "rating":5,
+        "city":"Delhi",
+        "area":"Dakshin Puri",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Chocolate Ferrero Rocher Almonds Cake",
+        "postdate":"4th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Vandana Vishwakarma",
+        "review_title":"Loved it\u2728",
+        "review_text":"Loved it\u2728",
+        "rating":5,
+        "city":"Mumbai",
+        "area":"Jogeshwari East",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Chocolate Dream Cake",
+        "postdate":"4th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Ramakrishna",
+        "review_title":"Nice ? & Satisfied \u263a\ufe0f",
+        "review_text":"Nice ? & Satisfied \u263a\ufe0f",
+        "rating":5,
+        "city":"Hyderabad",
+        "area":"Ameenpur",
+        "occasion":"Birthday",
+        "order_rating":4,
+        "title":"Chocolate Dream Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+            "https://media.bakingo.com/bk/review_image/1722831044.2186.jpeg",
+            "https://media.bakingo.com/bk/review_image/1722831044.4445.jpeg"
+        ]
+    },
+    {
+        "author":"Kavita",
+        "review_title":"Very good cake, ?",
+        "review_text":"Very good cake, ?",
+        "rating":5,
+        "city":"Bangalore",
+        "area":"Kagalipura",
+        "occasion":"Congratulations",
+        "order_rating":5,
+        "title":"Whipped Cream Pineapple Cake",
+        "postdate":"4th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Sonal",
+        "review_title":"Cake was fresh",
+        "review_text":"Cake was fresh",
+        "rating":5,
+        "city":"Chandigarh",
+        "area":"Mhc Manimajra",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Our Classic Chocolate Truffle Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Bhavani",
+        "review_title":"It was too delicious and ama",
+        "review_text":"It was too delicious and amazing",
+        "rating":4,
+        "city":"Bangalore",
+        "area":"Horamavu",
+        "occasion":"Birthday",
+        "order_rating":4,
+        "title":"Chocolate Dream Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Akanksha",
+        "review_title":"Good",
+        "review_text":"Good",
+        "rating":5,
+        "city":"Gurgaon",
+        "area":"Dlf Phase 4",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Fresh Fruits & Roasted Almonds Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Jagat",
+        "review_title":"Keep it up",
+        "review_text":"Keep it up",
+        "rating":5,
+        "city":"Bhopal",
+        "area":"J K Road",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Our Classic Chocolate Truffle Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Manikandan",
+        "review_title":"Good taste",
+        "review_text":"Good taste",
+        "rating":5,
+        "city":"Bangalore",
+        "area":"Krishnarajapuram",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Our Classic Chocolate Truffle Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+            "https://media.bakingo.com/bk/review_image/1722817475.3474.jpeg",
+            "https://media.bakingo.com/bk/review_image/1722817485.5134.jpeg"
+        ]
+    },
+    {
+        "author":"Manish",
+        "review_title":"Very nice black forest cack ",
+        "review_text":"Very nice black forest cack thanks bakingo.",
+        "rating":5,
+        "city":"Pune",
+        "area":"Undri",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Original Black Forest Cake",
+        "postdate":"3rd Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"dhanotiyamk",
+        "review_title":"The cake is very tasty",
+        "review_text":"The cake is very tasty",
+        "rating":5,
+        "city":"Jaipur",
+        "area":"Jhotwara",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Our Classic Chocolate Truffle Cake",
+        "postdate":"3rd Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"sneha kumari",
+        "review_title":"It was tasty n fresh cake...",
+        "review_text":"It was tasty n fresh cake....we loved ?",
+        "rating":5,
+        "city":"Noida",
+        "area":"Sector 100",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Chocolate Ganache Truffle Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"juhi thakkar",
+        "review_title":"It was good in taste and the",
+        "review_text":"It was good in taste and the delivery was on time",
+        "rating":4,
+        "city":"Faridabad",
+        "area":"Faridabad",
+        "occasion":"Birthday",
+        "order_rating":3,
+        "title":"KitKat Chocolate Truffle Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":0,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Yamini Chandran",
+        "review_title":"Melting in the mouth...so ta",
+        "review_text":"Melting in the mouth...so tasty",
+        "rating":5,
+        "city":"Mumbai",
+        "area":"Borivali East",
+        "occasion":"Congratulations",
+        "order_rating":5,
+        "title":"Chocolate Dream Cake",
+        "postdate":"3rd Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"Neha Agarwal",
+        "review_title":"Cake was very fresh and tast",
+        "review_text":"Cake was very fresh and tasty.",
+        "rating":5,
+        "city":"Noida",
+        "area":"Sector 78",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Whipped Cream Pineapple Cake",
+        "postdate":"5th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+
+        ]
+    },
+    {
+        "author":"pratibha",
+        "review_title":"Delicious and beautiful. I a",
+        "review_text":"Delicious and beautiful. I am highly satisfied with bakingo. Please never ever change yourself. Keep maintaing your Standards.",
+        "rating":5,
+        "city":"Jaipur",
+        "area":"C-Scheme",
+        "occasion":"Birthday",
+        "order_rating":5,
+        "title":"Butterscotch Cherry Topped Cake",
+        "postdate":"4th Aug, 2024",
+        "recommends":1,
+        "all_uris":null,
+        "images":[
+            "https://media.bakingo.com/bk/review_image/1722740939.2268.jpeg",
+            "https://media.bakingo.com/bk/review_image/1722740958.0773.jpeg"
+        ]
+    }
+]
