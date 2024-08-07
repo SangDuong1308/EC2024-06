@@ -1,5 +1,3 @@
-'use strict';
-
 const mongoose = require('mongoose');
 const { Schema, model, Types } = require('mongoose'); // Erase if already required
 

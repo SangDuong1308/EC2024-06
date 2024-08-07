@@ -3,7 +3,6 @@ const crypto = require('crypto');
 
 const userModel = require('../models/user.model');
 const KeyTokenService = require('./keyToken.service');
-const { createTokenPair } = require('../utils/auth');
 const { getInfoData } = require('../utils');
 const keytokenModel = require('../models/keytoken.model');
 const { ForbiddenRequest, BadRequest, InternalServerError } = require('../constants/error.reponse');
@@ -40,7 +39,7 @@ class AccessService {
             console.log({ privateKey, publicKey });
 
             // create token pair
-            const tokens = await createTokenPair({ userId: newUser._id, email }, publicKey, privateKey);
+            const tokens = await KeyTokenService.createTokenPair({ userId: newUser._id, email }, publicKey, privateKey);
 
             console.log(`Create token success:: `, tokens);
 
@@ -72,22 +71,10 @@ class AccessService {
 
         console.log(foundUser);
 
-        // const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
-        //     modulusLength: 4096,
-        //     publicKeyEncoding: {
-        //         type: "pkcs1",
-        //         format: "pem",
-        //     },
-        //     privateKeyEncoding: {
-        //         type: "pkcs1",
-        //         format: "pem",
-        //     },
-        // });
-
         const publicKey = crypto.randomBytes(64).toString("hex");
         const privateKey = crypto.randomBytes(64).toString("hex");
         
-        const tokens = await createTokenPair({userId: foundUser._id, email}, publicKey, privateKey);
+        const tokens = await KeyTokenService.createTokenPair({userId: foundUser._id, email}, publicKey, privateKey);
 
         await KeyTokenService.createKeyToken({
             userId: foundUser._id,

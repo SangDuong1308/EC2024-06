@@ -2,6 +2,7 @@
 
 const keytokenModel = require('../models/keytoken.model');
 const { Types } = require('mongoose');
+const JWT = require('jsonwebtoken');
 
 class KeyTokenService {
     static createKeyToken = async ({ userId, publicKey, privateKey, refreshToken }) => {
@@ -21,6 +22,33 @@ class KeyTokenService {
                 options
             );
             return token ? token.publicKey : null;
+        } catch (error) {
+            return error;
+        }
+    };
+
+    static createTokenPair = async (payload, publicKey, privateKey) => {
+        try {
+            // access Token
+            const accessToken = await JWT.sign(payload, publicKey, {
+                // algorithm: 'RS256',
+                expiresIn: '2 days',
+            });
+
+            const refreshToken = await JWT.sign(payload, privateKey, {
+                // algorithm: 'RS256',
+                expiresIn: '7 days',
+            });
+
+            JWT.verify(accessToken, publicKey, (err, decoded) => {
+                if (err) {
+                    console.error(`error verify::`, err);
+                } else {
+                    console.log(`decode verify::`, decoded);
+                }
+            });
+
+            return { accessToken, refreshToken };
         } catch (error) {
             return error;
         }

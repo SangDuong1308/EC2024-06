@@ -3,34 +3,9 @@
 const JWT = require('jsonwebtoken');
 const { asyncHandler } = require('./checkAuth');
 const { BadRequest, AuthFailureError, Api404Error } = require('../constants/error.reponse');
+const KeyTokenService = require('../services/keyToken.service');
 const { findByUserId, removeKeyById } = require('../services/keyToken.service')
 const keytokenModel = require('../models/keytoken.model');
-const createTokenPair = async (payload, publicKey, privateKey) => {
-    try {
-        // access Token
-        const accessToken = await JWT.sign(payload, publicKey, {
-            // algorithm: 'RS256',
-            expiresIn: '2 days',
-        });
-
-        const refreshToken = await JWT.sign(payload, privateKey, {
-            // algorithm: 'RS256',
-            expiresIn: '7 days',
-        });
-
-        JWT.verify(accessToken, publicKey, (err, decoded) => {
-            if (err) {
-                console.error(`error verify::`, err);
-            } else {
-                console.log(`decode verify::`, decoded);
-            }
-        });
-
-        return { accessToken, refreshToken };
-    } catch (error) {
-        return error;
-    }
-};
 
 const authentication = asyncHandler(async (req, res, next) => {
     const userId = req.headers['x-client-id'];
@@ -61,7 +36,7 @@ const authentication = asyncHandler(async (req, res, next) => {
     return next();
 });
 
-const handleRefreshToken = asyncHandler( async (req, res, next) => {
+const handleRefreshToken = async (req, res, next) => {
     const userId = req.headers['x-client-id'];
     const refreshToken = req.headers['x-refresh-token'];
 
@@ -85,16 +60,16 @@ const handleRefreshToken = asyncHandler( async (req, res, next) => {
 
     let email;
 
-    JWT.verify(refreshToken, keyStore.publicKey, (err, decodedUser) => {
+    JWT.verify(refreshToken, keyStore.privateKey, (err, decodedUser) => {
         if (err) {
-            // throw new AuthFailureError('Invalid refresh token.');
             console.error('Invalid refresh token.', err);
+            throw new AuthFailureError('Invalid refresh token.');
         } else {
             email = decodedUser.email;
         }
     });
 
-    const newTokens = await createTokenPair({userId, email}, keyStore.publicKey, keyStore.privateKey);
+    const newTokens = await KeyTokenService.createTokenPair({userId, email}, keyStore.publicKey, keyStore.privateKey);
 
     await keytokenModel.findByIdAndUpdate(
         keyStore._id,
@@ -107,6 +82,6 @@ const handleRefreshToken = asyncHandler( async (req, res, next) => {
 
     // return newTokens;
     res.status(200).json(newTokens);
-})
+}
 
-module.exports = { createTokenPair, authentication, handleRefreshToken };
+module.exports = { authentication, handleRefreshToken };
