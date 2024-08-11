@@ -1,0 +1,229 @@
+[
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d5a",
+    "product_name": "Our Classic Chocolate Truffle Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/choco-truffle-cake0005choc-AAA_1.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/choco-truffle-cake0005choc-BBB_1.jpg",
+      "https://bkmedia.bakingo.com/choco-truffle-cake0005choc-CCC_2.jpg",
+      "https://bkmedia.bakingo.com/choco-truffle-cake0005choc-DDD_1.jpg",
+      "https://bkmedia.bakingo.com/choco-truffle-cake0005choc-EEE_1.jpg"
+    ],
+    "product_description": "Satiate your taste buds right away! Enriched with chocolate sponge & truffle cream. Topped with white chocolate garnish and cherry, it is sure to leave you omnomnom!",
+    "product_category": "66b82eb8e2ab98e60123e89f",
+    "product_quantity": 20,
+    "product_sell_price": 549,
+    "product_list_price": 599,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d6b",
+    "product_name": "Butterscotch Cherry Topped Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/butterscotch-cake0003butt-AAAA.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/butterscotch-cake0003butt-AAAA.jpg",
+      "https://bkmedia.bakingo.com/butterscotch-cake0003butt-BBBB.jpg",
+      "https://bkmedia.bakingo.com/butterscotch-cake0003butt-CCCC.jpg",
+      "https://bkmedia.bakingo.com/butterscotch-cake0003butt-DDDD_0.jpg",
+      "https://bkmedia.bakingo.com/butterscotch-cake0003butt-EEEE.jpg"
+    ],
+    "product_description": "Savoured by all age groups, this crunchy chunks of butterscotch mixed with smooth caramel is what makes this flavour amazing amongst butterscotch-lovers.",
+    "product_category": "66b82eb8e2ab98e60123e89f",
+    "product_quantity": 20,
+    "product_sell_price": 499,
+    "product_list_price": 549,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d7c",
+    "product_name": "Chocolate Vanilla Half & Half Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/choco-vanilla-cake0006chva-AAA.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/choco-vanilla-cake0006chva-AAA.jpg",
+      "https://bkmedia.bakingo.com/choco-vanilla-cake0006chva-BBB.jpg",
+      "https://bkmedia.bakingo.com/choco-vanilla-cake0006chva-CCC.jpg",
+      "https://bkmedia.bakingo.com/choco-vanilla-cake0006chva-DDD.jpg",
+      "https://bkmedia.bakingo.com/choco-vanilla-cake0006chva-EEE.jpg"
+    ],
+    "product_description": "The perfect blend of tempting chocolate and irresistible vanilla flavours topped up with a cherry and some chocolate shavings.",
+    "product_category": "66b82eb8e2ab98e60123e89f",
+    "product_quantity": 20,
+    "product_sell_price": 549,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d8a",
+    "product_name": "Creamy Choco Vanilla Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/sq-heart-snatching-choco-vanilla-rose-cake-rosecake2559vani-A_0.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/sq-heart-snatching-choco-vanilla-rose-cake-rosecake2559vani-A_0.jpg",
+      "https://bkmedia.bakingo.com/sq-heart-snatching-choco-vanilla-rose-cake-rosecake2559vani-B_0.jpg",
+      "https://bkmedia.bakingo.com/sq-heart-snatching-choco-vanilla-rose-cake-rosecake2559vani-C_0.jpg",
+      "https://bkmedia.bakingo.com/sq-heart-snatching-choco-vanilla-rose-cake-rosecake2559vani-D_0.jpg"
+    ],
+    "product_description": "Velvety chocolate meets smooth vanilla in this heavenly cake, adorned with charming creamy hearts. The cake comes topped with real flowers for a glamorous appeal.",
+    "product_category": "66b82eb8e2ab98e60123e8a2",
+    "product_quantity": 20,
+    "product_sell_price": 1399,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": 60,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d9b",
+    "product_name": "Flowers Topped Vanilla Drip Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/sq-round-drooling-vanilla-rose-cake-rosecake2562vani-A_0.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/sq-round-drooling-vanilla-rose-cake-rosecake2562vani-A_0.jpg",
+      "https://bkmedia.bakingo.com/sq-round-drooling-vanilla-rose-cake-rosecake2562vani-B_0.jpg",
+      "https://bkmedia.bakingo.com/sq-round-drooling-vanilla-rose-cake-rosecake2562vani-C_0.jpg",
+      "https://bkmedia.bakingo.com/sq-round-drooling-vanilla-rose-cake-rosecake2562vani-D_0.jpg"
+    ],
+    "product_description": "A tender vanilla cake, topped with captivating red roses, promises a moist and delightful treat.",
+    "product_category": "66b82eb8e2ab98e60123e8a2",
+    "product_quantity": 20,
+    "product_sell_price": 1099,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": 60,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d9c",
+    "product_name": "Roses Topped Vanilla Cream Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/sq-round-pink-roses-vanilla-cake-rosecake2561vani-A_0.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/sq-round-pink-roses-vanilla-cake-rosecake2561vani-A_0.jpg",
+      "https://bkmedia.bakingo.com/sq-round-pink-roses-vanilla-cake-rosecake2561vani-B_0.jpg",
+      "https://bkmedia.bakingo.com/sq-round-pink-roses-vanilla-cake-rosecake2561vani-C_0.jpg",
+      "https://bkmedia.bakingo.com/sq-round-pink-roses-vanilla-cake-rosecake2561vani-D_0.jpg"
+    ],
+    "product_description": "Indulge in the pure joy of our creamy vanilla dream, a perfect circle of delight, blanketed in a fluffy cloud of whipped perfection. The cake comes topped with real flowers for a glamorous appeal.",
+    "product_category": "66b82eb8e2ab98e60123e8a2",
+    "product_quantity": 20,
+    "product_sell_price": 1149,
+    "product_list_price": 1499,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d9d",
+    "product_name": "Hearty Chocolatey Anniversary Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/heartful-of-chocolate-cake3046choc-A.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/heartful-of-chocolate-cake3046choc-A.jpg",
+      "https://bkmedia.bakingo.com/heartful-of-chocolate-cake3046choc-B.jpg",
+      "https://bkmedia.bakingo.com/heartful-of-chocolate-cake3046choc-C.jpg"
+    ],
+    "product_description": "A decadent heart-shaped chocolate cake adorned with delicate chocolate heart shavings, swirls, and a single striped wafer stick for a touch of elegance.",
+    "product_category": "66b82eb8e2ab98e60123e8a1",
+    "product_quantity": 20,
+    "product_sell_price": 649,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d9e",
+    "product_name": "Heart on Heart Chocolate Truffle Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/double-heart-choco-truffle-cake0034hech-AA.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/double-heart-choco-truffle-cake0034hech-AA.jpg",
+      "https://bkmedia.bakingo.com/double-heart-choco-truffle-cake0034hech-BB.jpg",
+      "https://bkmedia.bakingo.com/double-heart-choco-truffle-cake0034hech-CC.jpg"
+    ],
+    "product_description": "You would heart this cake because it's a heart-shaped chocolate cake. Red fondant heart sits on the top with white chocolate curls, the perfect sweet love you crave for.",
+    "product_category": "66b82eb8e2ab98e60123e8a1",
+    "product_quantity": 20,
+    "product_sell_price": 699,
+    "product_list_price": 799,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2d9f",
+    "product_name": "Heart Shaped Pineapple Sprinkled Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/sq-heart-shaped-pineapple-cake-cake1706pine-A_0.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/sq-heart-shaped-pineapple-cake-cake1706pine-A_0.jpg",
+      "https://bkmedia.bakingo.com/sq-heart-shaped-pineapple-cake-cake1706pine-B_0.jpg",
+      "https://bkmedia.bakingo.com/sq-heart-shaped-pineapple-cake-cake1706pine-C_0.jpg"
+    ],
+    "product_description": "A heart-shaped vanilla sponge topped with pineapple, cherries and chocolate garnishes, and filled with whipped cream with chopped pineapple slice this cake will surely prove to be a sweet and succulent indulgence.",
+    "product_category": "66b82eb8e2ab98e60123e8a1",
+    "product_quantity": 20,
+    "product_sell_price": 599,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2da0",
+    "product_name": "Smiling Face Fondant Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/smiling-face-fondant-cake-cake3529flav-A.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/smiling-face-fondant-cake-cake3529flav-A.jpg",
+      "https://bkmedia.bakingo.com/smiling-face-fondant-cake-cake3529flav-B.jpg",
+      "https://bkmedia.bakingo.com/smiling-face-fondant-cake-cake3529flav-C.jpg"
+    ],
+    "product_description": "Delight in the sweetness of life's mid-year moments with this bespoke Half-Yearly Celebration Cake. Choose your desired flavour and be enchanted by its lusciously smooth, velvety, and melt-in-mouth texture. Crafted in the form of a girl's smiling face, adorned with a little fondant birthday cap, it captures the joy of the occasion. Embrace the simplicity of shared laughter and love, making each slice a cherished memory in the album of time.",
+    "product_category": "66b82eb8e2ab98e60123e8a0",
+    "product_quantity": 20,
+    "product_sell_price": 1599,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2da1",
+    "product_name": "Fondant Bow n Edibles Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/fondant-bow-n-edibles-cake-cake3528flav-A.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/fondant-bow-n-edibles-cake-cake3528flav-A.jpg",
+      "https://bkmedia.bakingo.com/fondant-bow-n-edibles-cake-cake3528flav-B.jpg",
+      "https://bkmedia.bakingo.com/fondant-bow-n-edibles-cake-cake3528flav-C.jpg"
+    ],
+    "product_description": "Indulge in the enchanting world of confectionery artistry with this exquisite half cake. Crafted with love, this scrumptious fondant masterpiece boasts a delightful bow that's truly a work of art. Edible pearls adorn its surface like precious gems, while velvety ganache cascades, creating a symphony of flavors. Perfect for cherishing those cute lovely moments, it's the ultimate creation that encapsulates joy, making celebrations absolutely magical.",
+    "product_category": "66b82eb8e2ab98e60123e8a0",
+    "product_quantity": 20,
+    "product_sell_price": 1599,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  },
+  {
+    "_id": "64d60e1e2e4f6f0e1f1e2da2",
+    "product_name": "Luscious Creamy Half Cake",
+    "product_thumb": "https://bkmedia.bakingo.com/luscious-creamy-half-cake-cake3526flav-A.jpg",
+    "image_sources": [
+      "https://bkmedia.bakingo.com/luscious-creamy-half-cake-cake3526flav-A.jpg",
+      "https://bkmedia.bakingo.com/luscious-creamy-half-cake-cake3526flav-B.jpg",
+      "https://bkmedia.bakingo.com/luscious-creamy-half-cake-cake3526flav-C.jpg",
+      "https://bkmedia.bakingo.com/luscious-creamy-half-cake-cake3526flav-D.jpg"
+    ],
+    "product_description": "Celebrate a sweet milestone with this charming Half Cake! Adorned with luscious creamy swirls and a delightful array of colorful sprinkles, this delectable treat is ready to light up your little one's six-month birthday bash. What makes it even more special is its customizable flavor, tailored to your preference. Whether it's a tiny tot's six-month birthday or a cheerful occasion, this cake is the perfect centerpiece. Share in the happiness and create lasting memories with every scrumptious bite of our specially crafted half cake.",
+    "product_category": "66b82eb8e2ab98e60123e8a0",
+    "product_quantity": 20,
+    "product_sell_price": 649,
+    "product_list_price": 0,
+    "eggless": true,
+    "preparation_time": null,
+    "isActive": true
+  }
+]

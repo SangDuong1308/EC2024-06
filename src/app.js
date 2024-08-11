@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { default: helmet } = require('helmet');
 const compression = require('compression');
+const swaggerDocs = require('./utils/swagger');
 const app = express();
 
 // init middleware
@@ -18,6 +19,8 @@ require('./dbs/init.mongodb');
 // init routes
 
 app.use('/', require('./routers'));
+
+swaggerDocs(app, process.env.PORT);
 
 // handle error for rq do not match any route 
 

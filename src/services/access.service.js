@@ -9,12 +9,7 @@ const { ForbiddenRequest, BadRequest, InternalServerError } = require('../consta
 const { findByEmail } = require('./user.service');
 const { error } = require('console');
 const { Types } = require('mongoose');
-
-const roles = {
-    USER: 'user',
-    ADMIN: 'admin',
-    KITCHEN: 'kitchen',
-};
+const { ROLES } = require('../constants');
 
 class AccessService {
 
@@ -29,8 +24,7 @@ class AccessService {
         const newUser = await userModel.create({
             name,
             email,
-            password: passwordHash,
-            role: roles.USER,
+            password: passwordHash
         });
         if (newUser) {
             const publicKey = crypto.randomBytes(64).toString("hex");
@@ -60,7 +54,7 @@ class AccessService {
         };
     };
 
-    static login = async ({ email, password, accessToken}) => {
+    static login = async ({ email, password}) => {
         if (!email || !password) {
             throw new BadRequest("Missing information!")
         }
@@ -74,7 +68,15 @@ class AccessService {
         const publicKey = crypto.randomBytes(64).toString("hex");
         const privateKey = crypto.randomBytes(64).toString("hex");
         
-        const tokens = await KeyTokenService.createTokenPair({userId: foundUser._id, email}, publicKey, privateKey);
+        const tokens = await KeyTokenService.createTokenPair(
+            {
+                userId: foundUser._id, 
+                email: foundUser.email,
+                role: foundUser.role
+            },
+            publicKey, 
+            privateKey
+        );
 
         await KeyTokenService.createKeyToken({
             userId: foundUser._id,

@@ -3,7 +3,23 @@
 const express = require('express');
 const router = express.Router();
 
-router.use('/', require('./access'));
+/**
+   * @openapi
+   * /healthcheck:
+   *  get:
+   *     tags:
+   *     - Healthcheck
+   *     description: Responds if the app is up and running
+   *     responses:
+   *       200:
+   *         description: App is up and running
+*/
+router.get('/healthcheck', (req, res) => res.sendStatus(200))
+router.use('/auth', require('./access'));
+router.use('/user', require('./user'));
+router.use('/category', require('./category'));
+router.use('/product', require('./product'));
+router.use('/', (req, res) => res.status(404).json('No API route found'));
 
 
 module.exports = router;

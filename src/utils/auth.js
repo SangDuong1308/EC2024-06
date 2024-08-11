@@ -1,13 +1,13 @@
 'use strict';
 
 const JWT = require('jsonwebtoken');
-const { asyncHandler } = require('./checkAuth');
+const { asyncHandler } = require('./errorHandle');
 const { BadRequest, AuthFailureError, Api404Error } = require('../constants/error.reponse');
 const KeyTokenService = require('../services/keyToken.service');
 const { findByUserId, removeKeyById } = require('../services/keyToken.service')
 const keytokenModel = require('../models/keytoken.model');
 
-const authentication = asyncHandler(async (req, res, next) => {
+const authentication = async (req, res, next) => {
     const userId = req.headers['x-client-id'];
 
     if (!userId) {
@@ -34,7 +34,7 @@ const authentication = asyncHandler(async (req, res, next) => {
         }
     });
     return next();
-});
+};
 
 const handleRefreshToken = async (req, res, next) => {
     const userId = req.headers['x-client-id'];
@@ -84,4 +84,23 @@ const handleRefreshToken = async (req, res, next) => {
     res.status(200).json(newTokens);
 }
 
-module.exports = { authentication, handleRefreshToken };
+const verifyRole = (...roles) => async (req, res, next) => {
+    try {
+        if (!req.user) {
+            return next(new AuthFailureError("Unauthorized: No user information available."));
+        }
+
+        const hasRole = roles.includes(req.user.role);
+        if (!hasRole) {
+            return next(
+                new AuthFailureError(`Authenticate Failure: Your role is ${req.user.role}. Required roles: ${roles.join(", ")}.`)
+            );
+        }
+
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+}
+
+module.exports = { authentication, handleRefreshToken, verifyRole };

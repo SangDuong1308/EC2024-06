@@ -2,10 +2,6 @@
 
 const mongoose = require('mongoose');
 
-// const {
-//     db: { host, port, name },
-// } = require('../configs/config.mongodb');
-
 const {
     db: { host, name },
 } = require('../configs/config.mongodb');

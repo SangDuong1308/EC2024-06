@@ -1,37 +1,59 @@
 const { Schema, model, Types } = require('mongoose');
 
-// Declare the Schema of the Mongo model
-const productSchema = new Schema({
-    product_name: {
-        type: String,
-        required: true,
+const DOCUMENT_NAME = 'Product';
+const COLLECTION_NAME = 'Products';
+
+const productSchema = new Schema(
+    {
+        product_name: { 
+            type: String, 
+            required: true 
+        },
+        product_thumb: { 
+            type: String, 
+            required: true 
+        },
+        image_sources: [{
+            type: String,
+        }],
+        product_description: { 
+            type: String, 
+            required: true 
+        },
+        product_category: {
+            type: Types.ObjectId,
+            ref: "Category",
+            required: true,
+        },
+        product_quantity: { 
+            type: Number,
+        },
+        product_sell_price: { 
+            type: Number, 
+            require: true 
+        },
+        product_list_price: { 
+            type: Number, 
+            require: true 
+        },
+        eggless: {
+            type: Boolean,
+            default: false
+        },
+        preparation_time: {
+            type: Number,
+            default: null
+        },
+        isActive: {
+            type: Boolean,
+            default: true
+        }
     },
-    product_price: {
-        type: Number,
-        required: true,
+    {
+        timestamps: true,
+        collection: COLLECTION_NAME,
     },
-    product_description: {
-        type: String,
-        required: true,
-    },
-    product_image: {
-        type: String,
-        required: true,
-    },
-    category: {
-        type: Types.ObjectId,
-        ref: "Category",
-        required: true,
-    },
-    created_at: {
-        type: Date,
-        default: Date.now,
-    },
-    updated_at: {
-        type: Date,
-        default: Date.now,
-    },
-});
+);
 
 //Export the model
-module.exports = model("Product", productSchema);
+module.exports = model(DOCUMENT_NAME, productSchema);

@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "66b82eb8e2ab98e60123e89f",
+    "category_name": "Eggless Cakes",
+    "isActive": true,
+    "__v": 0
+  },
+  {
+    "_id": "66b82eb8e2ab98e60123e8a2",
+    "category_name": "Rose Cakes",
+    "isActive": true,
+    "__v": 0
+  },
+  {
+    "_id": "66b82eb8e2ab98e60123e8a1",
+    "category_name": "Heart Shape Cakes",
+    "isActive": true,
+    "__v": 0
+  },
+  {
+    "_id": "66b82eb8e2ab98e60123e8a0",
+    "category_name": "Half Cakes",
+    "isActive": true,
+    "__v": 0
+  }
+]

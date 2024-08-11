@@ -1,8 +1,9 @@
 const express = require('express');
-const { asyncHandler } = require('../../utils/checkAuth');
+const { asyncHandler } = require('../../utils/errorHandle');
+const { getAllCategories } = require('../../controllers/category.controller');
 
 const router = express.Router();
 
-router.use('/category', asyncHandler());
+router.get('/', asyncHandler(getAllCategories));
 
 module.exports = router;

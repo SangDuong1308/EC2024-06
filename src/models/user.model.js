@@ -2,6 +2,7 @@
 
 // !dmbg
 const { model, Schema, Types } = require('mongoose'); // Erase if already required
+const { ROLES } = require('../constants');
 
 const DOCUMENT_NAME = 'User';
 const COLLECTION_NAME = 'Users';
@@ -44,8 +45,8 @@ const userSchema = new Schema(
         },
         role: {
             type: String,
-            enum: ['user', 'admin', 'kitchen', 'shipper'],
-            default: [],
+            enum: [ROLES.Admin, ROLES.User, ROLES.Baker],
+            default: ROLES.User
         },
     },
     {
