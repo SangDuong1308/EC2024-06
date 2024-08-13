@@ -18,11 +18,9 @@ require('./dbs/init.mongodb');
 
 // init routes
 
-app.use('/', require('./routers'));
-
 swaggerDocs(app, process.env.PORT);
 
-// handle error for rq do not match any route 
+app.use('/', require('./routers'));
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

@@ -19,7 +19,7 @@ router.use('/auth', require('./access'));
 router.use('/user', require('./user'));
 router.use('/category', require('./category'));
 router.use('/product', require('./product'));
+// handle error for rq do not match any route 
 router.use('/', (req, res) => res.status(404).json('No API route found'));
-
 
 module.exports = router;
