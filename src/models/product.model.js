@@ -55,5 +55,7 @@ const productSchema = new Schema(
     },
 );
 
+productSchema.index({ product_name: 'text', product_description: 'text' });
+
 //Export the model
 module.exports = model(DOCUMENT_NAME, productSchema);

@@ -32,5 +32,18 @@ module.exports = {
             .select({ ...unSelectFields, ...selectedFields })
             .lean()
             .exec();
+    },
+    async searchProduct(name) {
+        const regexSearch = new RegExp(name);
+        return await productModel
+            .find(
+                {
+                    isActive: true,
+                    $text: { $search: regexSearch, $caseSensitive: false },
+                },
+                { score: { $meta: "textScore" } }
+            )
+            .sort({ score: { $meta: "textScore" } })
+            .lean();
     }
 }
