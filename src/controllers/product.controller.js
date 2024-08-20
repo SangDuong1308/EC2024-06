@@ -3,7 +3,7 @@ const productService = require("../services/product.service");
 
 module.exports = {
     async getAllProducts(req, res, next) {
-        const { limit = 50, sort = "ctime", page = 1 } = req.query;
+        const { limit = 10, sort = "ctime", page = 1 } = req.query;
         try {
             const filter = { isActive: true };
             const select = [
