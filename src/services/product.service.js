@@ -1,3 +1,4 @@
+const { Types } = require("mongoose");
 const productModel = require("../models/product.model");
 const { getSelectData, unSelectData } = require("../utils");
 
@@ -45,5 +46,28 @@ module.exports = {
             )
             .sort({ score: { $meta: "textScore" } })
             .lean();
-    }
+    },
+    async createProduct(product) {
+        return await productModel.create({
+            ...product
+        })
+    },
+    async updateProduct({ productId, bodyUpdate, product_thumb }) {
+        const filter = {
+            _id: new Types.ObjectId(productId),
+        };
+        if (product_thumb) {
+            bodyUpdate = {
+                ...bodyUpdate,
+                product_thumb,
+            };
+        }
+        return await productModel.findOneAndUpdate(
+            filter,
+            { $set: { ...bodyUpdate } },
+            {
+                new: true,
+            }
+        );
+    },
 }
