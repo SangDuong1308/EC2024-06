@@ -70,4 +70,7 @@ module.exports = {
             }
         );
     },
+    async deleteProductById(filter) {
+        return await productModel.deleteOne(filter);
+    }
 }

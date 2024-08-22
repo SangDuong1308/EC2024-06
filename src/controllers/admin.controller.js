@@ -1,3 +1,4 @@
+const { Types } = require("mongoose");
 const { Api404Error, BadRequest, InternalServerError } = require("../constants/error.reponse");
 const productService = require("../services/product.service");
 const { uploadFileFromLocal } = require("../services/upload.service");
@@ -81,4 +82,24 @@ module.exports = {
              metadata: updatedProduct 
         });
     },
+    async deleteProduct(req, res, next) {
+        try {
+            const { id: productId} = req.query;
+
+            if (!productId) {
+                throw new BadRequest("Product Id is required");
+            }
+
+            const deleted_product = await productService.deleteProductById({
+                _id: new Types.ObjectId(productId)
+            })
+
+             if (deleted_product.deletedCount !== 1)
+                next(new InternalServerError("Delete product failed"));
+            return res.status(200).json("product successfully deleted");
+
+        } catch (error) {
+            next(new InternalServerError(error.message));
+        }
+    }
 }

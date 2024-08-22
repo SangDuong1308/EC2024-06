@@ -9,5 +9,6 @@ const router = express.Router();
 router.use(authentication, verifyRole(ROLES.Admin))
 router.post('/add', upload.single('product_thumb'), asyncHandler(adminController.createPoruduct))
 router.patch('/update', upload.single('product_thumb'), asyncHandler(adminController.updateProduct))
+router.delete('/product', asyncHandler(adminController.deleteProduct))
 
 module.exports = router;
