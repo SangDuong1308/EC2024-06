@@ -34,6 +34,9 @@ module.exports = {
             .lean()
             .exec();
     },
+    async checKExistProduct(productId, select = []) {
+        return await productModel.findById(productId).select(select).lean();
+    },
     async searchProduct(name) {
         const regexSearch = new RegExp(name);
         return await productModel
@@ -72,5 +75,5 @@ module.exports = {
     },
     async deleteProductById(filter) {
         return await productModel.deleteOne(filter);
-    }
+    },
 }

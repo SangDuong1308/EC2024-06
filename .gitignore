@@ -4,3 +4,4 @@ node_modules/
 .env
 Tree.md
 /src/uploads
+arch.yml
