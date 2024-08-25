@@ -1,12 +1,20 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const { default: helmet } = require('helmet');
 const compression = require('compression');
 const swaggerDocs = require('./utils/swagger');
 const app = express();
 
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+};
+
 // init middleware
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(compression());
@@ -29,7 +37,7 @@ app.use((req, res, next) => {
 })
 
 app.use((error, req, res, next) => {
-    const statusCode = error.status || 500;
+    const statusCode = error.statusCode || 500;
     return res.status(statusCode).json({
         status: 'error',
         code: statusCode,

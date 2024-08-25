@@ -38,14 +38,13 @@ class AccessService {
             console.log(`Create token success:: `, tokens);
 
             return {
-                code: 201,
-                metadata: {
-                    user: getInfoData({
-                        fields: ['_id', 'name', 'email', 'role'],
-                        object: newUser,
-                    }),
-                    tokens,
-                },
+                code: 201,     
+                user: getInfoData({
+                    fields: ['_id', 'name', 'email', 'role'],
+                    object: newUser,
+                }),
+                tokens,
+               
             };
         }
         return {
@@ -70,7 +69,7 @@ class AccessService {
         
         const tokens = await KeyTokenService.createTokenPair(
             {
-                userId: foundUser._id, 
+                userId: foundUser._id,
                 email: foundUser.email,
                 role: foundUser.role
             },

@@ -15,6 +15,7 @@ const authentication = async (req, res, next) => {
     }
 
     const accessToken = req.headers['x-authorization'];
+    console.log(`Access token: ${accessToken}`);
     if (!accessToken) {
         throw new AuthFailureError('No token provided!');
     }
