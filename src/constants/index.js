@@ -29,3 +29,8 @@ exports.EMAIL_PROVIDER = {
   Google: 'Google',
   Facebook: 'Facebook'
 };
+
+exports.SHOP_LOCATION = {
+  Lat: 10.755560,
+  Lng: 106.686216
+};

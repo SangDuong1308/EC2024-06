@@ -17,6 +17,7 @@ const router = express.Router();
 router.get('/healthcheck', (req, res) => res.sendStatus(200))
 router.use('/auth', require('./access'));
 router.use('/user', require('./user'));
+router.use('/order', require('./order'))
 router.use('/admin', require('./admin'));
 router.use('/category', require('./category'));
 router.use('/product', require('./product'));

@@ -48,6 +48,14 @@ const productSchema = new Schema(
             type: Number,
             default: null
         },
+        product_sold: {
+            type: Number,
+            default: 0
+        },
+        product_like: {
+            type: Number,
+            default: 0
+        },
         isActive: {
             type: Boolean,
             default: true
