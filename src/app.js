@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const { default: helmet } = require('helmet');
 const compression = require('compression');
 const swaggerDocs = require('./utils/swagger');
+const { Api404Error } = require('./constants/error.reponse');
 const app = express();
 
 const corsOptions = {
@@ -31,9 +32,12 @@ swaggerDocs(app, process.env.PORT);
 app.use('/', require('./routers'));
 
 app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status = 404;
-    next(error);
+    next(new Api404Error('Not found'));
+})
+
+app.use((err, req, res, next) => {
+    console.error(err);
+    next(err);
 })
 
 app.use((error, req, res, next) => {

@@ -3,3 +3,5 @@ node_modules/
 .idea/
 .env
 Tree.md
+/src/uploads
+arch.yml

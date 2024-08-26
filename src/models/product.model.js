@@ -25,6 +25,10 @@ const productSchema = new Schema(
             ref: "Category",
             required: true,
         },
+        product_weight: {
+            type: Number,
+            enum: [0.5, 1, 1.5, 2, 4]
+        },
         product_quantity: { 
             type: Number,
         },
@@ -54,6 +58,8 @@ const productSchema = new Schema(
         collection: COLLECTION_NAME,
     },
 );
+
+productSchema.index({ product_name: 'text', product_description: 'text' });
 
 //Export the model
 module.exports = model(DOCUMENT_NAME, productSchema);

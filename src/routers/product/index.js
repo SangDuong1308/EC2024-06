@@ -1,8 +1,9 @@
 const express = require('express');
 const { asyncHandler } = require('../../utils/errorHandle');
-const { getAllProducts, getProductById } = require('../../controllers/product.controller');
+const productController = require('../../controllers/product.controller');
 
 const router = express.Router();
-router.get('/', asyncHandler(getAllProducts));
-router.get('/:productId', asyncHandler(getProductById));
+router.get('/search', asyncHandler(productController.searchProduct))
+router.get('/', asyncHandler(productController.getAllProducts));
+router.get('/:productId', asyncHandler(productController.getProductById));
 module.exports = router;
