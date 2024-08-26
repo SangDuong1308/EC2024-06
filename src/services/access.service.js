@@ -39,13 +39,11 @@ class AccessService {
 
             return {
                 code: 201,
-                metadata: {
-                    user: getInfoData({
+                user: getInfoData({
                         fields: ['_id', 'name', 'email', 'role'],
                         object: newUser,
                     }),
-                    tokens,
-                },
+                tokens,
             };
         }
         return {
