@@ -2,6 +2,7 @@ const { SHOP_LOCATION } = require("../constants");
 const { Api404Error, InternalServerError, BadRequest } = require("../constants/error.reponse");
 const cartService = require("../services/cart.service");
 const orderService = require("../services/order.service");
+const paymentService = require("../services/payment.service");
 const { findShippingFee, distanceBetweenTwoPoints } = require("../utils");
 
 module.exports = {
@@ -118,5 +119,22 @@ module.exports = {
         res.status(201).json({
             message: "Create order successfully",
         })
+    },
+    async getVnpUrl(req, res) {
+        const VnpUrl = paymentService.getVnpUrl(req);
+        // res.status(200).send(VnpUrl);
+        console.log("VnpUrl:::", VnpUrl);
+        res.status(200).redirect(VnpUrl);
+    },
+    async handleVnpReturn(req, res) {
+        const result = paymentService.getVnPayResult(req);
+        // res.status(200).send(result);
+        const redirectUrl = process.env.REDIRECT_LINK;
+        console.log("Redirect link:::", redirectUrl);
+        if (result.code === "00") {
+            res.redirect(redirectUrl);
+        } else {
+            res.redirect(redirectUrl);
+        }
     }
 }
