@@ -38,13 +38,14 @@ class AccessService {
             console.log(`Create token success:: `, tokens);
 
             return {
-                code: 201,     
-                user: getInfoData({
-                    fields: ['_id', 'name', 'email', 'role'],
-                    object: newUser,
-                }),
-                tokens,
-               
+                code: 201,
+                metadata: {
+                    user: getInfoData({
+                        fields: ['_id', 'name', 'email', 'role'],
+                        object: newUser,
+                    }),
+                    tokens,
+                },
             };
         }
         return {

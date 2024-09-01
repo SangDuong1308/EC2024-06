@@ -34,7 +34,10 @@ module.exports = {
             .lean()
             .exec();
     },
-    async checKExistProduct(productId, select = []) {
+    async getProductByIdAndUpdate(productId, update) {
+        return await productModel.findByIdAndUpdate(productId, update)
+    },
+    async checkExistProduct(productId, select = []) {
         return await productModel.findById(productId).select(select).lean();
     },
     async searchProduct(name) {

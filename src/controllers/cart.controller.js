@@ -33,7 +33,7 @@ module.exports = {
         if (quantity < 0)
             throw new BadRequest("Quantity should be greater than 0");
 
-        const foundProduct = await productService.checKExistProduct(productId);
+        const foundProduct = await productService.checkExistProduct(productId);
         if (!foundProduct) throw new Api404Error("Product Not Found");
 
         const foundCart = await cartService.findCartByUserId(userId);

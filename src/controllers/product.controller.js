@@ -3,9 +3,9 @@ const productService = require("../services/product.service");
 
 module.exports = {
     async getAllProducts(req, res, next) {
-        const { limit = 50, sort = "ctime", page = 1 } = req.params;
+        const { limit = 50, sort = "ctime", page = 1  } = req.query;
         try {
-            const filter = { isActive: true };
+            const filter = { isActive: true};
             const select = [
                 "_id",
                 "product_name",
@@ -57,6 +57,7 @@ module.exports = {
     async searchProduct(req, res, next) {
         try {
             const { name } = req.query;
+            console.log('name::', name);
 
             if (!name) throw new BadRequest("Missing required arguments");
 

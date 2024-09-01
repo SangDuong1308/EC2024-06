@@ -32,7 +32,8 @@ const userSchema = new Schema(
             type: String,
         },
         address: {
-            type: String,
+            type: Array,
+            default: [],
         },
         status: {
             type: String,

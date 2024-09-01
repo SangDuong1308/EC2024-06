@@ -7,6 +7,8 @@ class CategoryController {
     getAllCategories = async (req, res, next) => {
         let categories = await categoryModel.find({});
 
+        console.log(categories)
+
         if (!categories) {
             throw new InternalServerError('Error: Can not get categories!');
         }
