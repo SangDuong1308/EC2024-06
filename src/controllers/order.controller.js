@@ -1,9 +1,11 @@
 const { SHOP_LOCATION } = require("../constants");
 const { Api404Error, InternalServerError, BadRequest } = require("../constants/error.reponse");
+const temporaryOrderModel = require("../models/temporaryOrder.model");
 const cartService = require("../services/cart.service");
 const orderService = require("../services/order.service");
 const paymentService = require("../services/payment.service");
 const { findShippingFee, distanceBetweenTwoPoints } = require("../utils");
+const CryptoJS = require("crypto-js");
 
 module.exports = {
     async checkoutReview(req, res) {
@@ -120,6 +122,89 @@ module.exports = {
             message: "Create order successfully",
         })
     },
+
+    async checkoutZalo(req, res) {
+        const orderInfo = req.orderInfo;
+        orderInfo.paymentMethod = "zalopay";
+        console.log("orderInfo.totalPrice:::", orderInfo.totalPrice);
+
+        try {
+            const result = await paymentService.getZaloPayUrl(
+                orderInfo.list_products,
+                orderInfo.totalPrice
+            );
+
+            //1. tao ra 1 don hang tam trong 15 phut
+            // check result thanh cong hay chua
+            const expiryTime = new Date();
+            expiryTime.setMinutes(expiryTime.getMinutes() + 15);
+
+            await temporaryOrderModel.create({
+                order_info: orderInfo,
+                app_trans_id: result.app_trans_id,
+                time: expiryTime,
+            });
+            console.log("result order::", result);
+            res.status(200).json({
+                message: "Success",
+                metadata: result.order_url || "",
+            });
+        } catch (err) {
+            throw new BadRequest("Error occurred when access payment gateway");
+        }
+    },
+
+    async handleZalopayCallback(req, res) {
+        const config = {
+            key2: process.env.ZALOPAY_KEY2,
+        };
+
+        let result = {};
+
+        try {
+            let dataStr = req.body.data;
+            let reqMac = req.body.mac;
+
+            let mac = CryptoJS.HmacSHA256(dataStr, config.key2).toString();
+            console.log("mac =", mac);
+
+            // kiểm tra callback hợp lệ (đến từ ZaloPay server)
+            if (reqMac !== mac) {
+                // callback không hợp lệ
+                result.return_code = -1;
+                result.return_message = "mac not equal";
+            } else {
+                // thanh toán thành công
+                // merchant cập nhật trạng thái cho đơn hàng
+                let dataJson = JSON.parse(dataStr, config.key2);
+                console.log(
+                    "update order's status = success where app_trans_id =",
+                    dataJson["app_trans_id"]
+                );
+                console.log("dataJson:::", dataJson);
+
+                const tempOrder = await temporaryOrderModel.findOneAndDelete({
+                    app_trans_id: dataJson.app_trans_id,
+                });
+                if (!tempOrder || !tempOrder.order_info)
+                    throw new BadRequest("Order Expired, Please try again");
+
+                const createdOrder = await orderService.createOrder(
+                    tempOrder.order_info
+                );
+
+                result.return_code = 1;
+                result.return_message = "success";
+            }
+        } catch (ex) {
+            result.return_code = 0; // ZaloPay server sẽ callback lại (tối đa 3 lần)
+            result.return_message = ex.message;
+        }
+
+        // thông báo kết quả cho ZaloPay server
+        res.json(result);
+    },
+
     async getVnpUrl(req, res) {
         const VnpUrl = paymentService.getVnpUrl(req);
         // res.status(200).send(VnpUrl);

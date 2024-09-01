@@ -23,62 +23,25 @@ node .\seedDB.js --import
 node .\seedDB.js --delete
 
 ```
+## Thông tin thẻ ngân hàng - sử dụng cho việc test tích hợp Cổng ZaloPay
 
- ```
-├── README.md
-├── Tree.md
-├── eslint.config.js
-├── package-lock.json
-├── package.json
-├── server.js
-└── src
-    ├── app.js
-    ├── configs
-    │   └── config.mongodb.js
-    ├── constants
-    │   ├── error.reponse.js
-    │   ├── httpStatusCode.js
-    │   ├── index.js
-    │   ├── statusDescription.js
-    │   └── success.response.js
-    ├── controllers
-    │   ├── access.controller.js
-    │   ├── category.controller.js
-    │   ├── product.controller.js
-    │   └── user.controller.js
-    ├── data
-    │   ├── cake.json
-    │   ├── category.json
-    │   └── seedDB.js
-    ├── dbs
-    │   └── init.mongodb.js
-    ├── helpers
-    │   └── check.connect.js
-    ├── models
-    │   ├── category.model.js
-    │   ├── keytoken.model.js
-    │   ├── product.model.js
-    │   └── user.model.js
-    ├── products_scraper
-    │   ├── cakes_detail.py
-    │   ├── product_review.py
-    │   └── raw_data
-    ├── routers
-    │   ├── access
-    │   ├── admin
-    │   ├── cart
-    │   ├── category
-    │   ├── index.js
-    │   ├── product
-    │   └── user
-    ├── services
-    │   ├── access.service.js
-    │   ├── keyToken.service.js
-    │   ├── product.service.js
-    │   └── user.service.js
-    └── utils
-        ├── auth.js
-        ├── errorHandle.js
-        ├── index.js
-        └── swagger.js
-```
+### Thông tin thẻ Visa, Master, JCB
+
+| **Thông tin**       | **Chi tiết**              | **Ghi chú** |
+|---------------------|---------------------------|-------------|
+| **Số thẻ**          | 4111 1111 1111 1111        |             |
+| **Tên**             | NGUYEN VAN A               |             |
+| **Ngày hết hạn**    | 01/25                      |             |
+| **Mã CVV**          | 123                        |             |
+
+
+## Thông tin thẻ ngân hàng - sử dụng cho việc test tích hợp Cổng VnPay
+
+| **Thông tin**       | **Chi tiết**              | **Ghi chú** |
+|---------------------|---------------------------|-------------|
+| **Ngân hàng**       | NCB                        | Thành công  |
+| **Số thẻ**          | 9704 1985 2619 1432 198    |             |
+| **Tên chủ thẻ**     | NGUYEN VAN A               |             |
+| **Ngày phát hành**  | 07/15                      |             |
+| **Mật khẩu OTP**    | 123456                     |             |
+

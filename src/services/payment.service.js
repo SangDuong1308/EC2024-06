@@ -1,7 +1,12 @@
 const moment = require('moment');
 const querystring = require('qs');
 const crypto = require('crypto');
+const CryptoJS = require('crypto-js');
+const axios = require('axios');
 const configVnpay = require('../configs/config.vnpay');
+
+const orderCallBack = 
+    "https://buzzard-flying-seriously.ngrok-free.app/order/callback/zalopay"
 
 module.exports = {
     getVnpUrl(req){
@@ -81,6 +86,64 @@ module.exports = {
                 message: "success",
                 code: "97",
             };
+        }
+    },
+    
+    async getZaloPayUrl(
+        items,
+        amount,
+        desc="",
+    ) {
+        const config = {
+            app_id: process.env.ZALOPAY_APPID,
+            key1: process.env.ZALOPAY_KEY1,
+            key2: process.env.ZALOPAY_KEY2,
+            endpoint: process.env.ZALOPAY_ENDPONIT
+        }
+
+        const embed_data = {
+            redirecturl: process.env.ZALOPAY_REDIRECT,
+        }
+
+        const transID = Math.floor(Math.random() * 1000000);
+        const order = {
+            app_id: config.app_id,
+            app_trans_id: `${moment().format("YYMMDD")}_${transID}`, // translation missing: vi.docs.shared.sample_code.comments.app_trans_id
+            app_user: "user123",
+            app_time: Date.now(), // miliseconds
+            item: JSON.stringify(items),
+            embed_data: JSON.stringify(embed_data),
+            amount,
+            description:
+                desc || `Payment for the order #${transID}`,
+            bank_code: "",
+            callback_url: orderCallBack,
+        };
+
+        // appid|app_trans_id|appuser|amount|apptime|embeddata|item
+        const data =
+            config.app_id +
+            "|" +
+            order.app_trans_id +
+            "|" +
+            order.app_user +
+            "|" +
+            order.amount +
+            "|" +
+            order.app_time +
+            "|" +
+            order.embed_data +
+            "|" +
+            order.item;
+        order.mac = CryptoJS.HmacSHA256(data, config.key1).toString();
+
+        try {
+            const result = await axios.post(config.endpoint, null, {
+                params: order,
+            });
+            return { ...result.data, app_trans_id: order.app_trans_id };
+        } catch (err) {
+            throw new Error(err.message);
         }
     },
 }
