@@ -37,6 +37,7 @@ module.exports = {
         if (!foundProduct) throw new Api404Error("Product Not Found");
 
         const foundCart = await cartService.findCartByUserId(userId);
+        console.log(foundCart)
 
         const productToAdd = {
             productId: foundProduct._id,

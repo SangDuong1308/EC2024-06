@@ -3,9 +3,14 @@ const productService = require("../services/product.service");
 
 module.exports = {
     async getAllProducts(req, res, next) {
-        const { limit = 50, sort = "ctime", page = 1  } = req.query;
+        const { limit = 50, sort = "ctime", page = 1, product_category  } = req.query;
+        console.log('Querry::', req.query);
         try {
-            const filter = { isActive: true};
+            const filter = { isActive: true, product_category};
+            if(!filter.product_category){
+                delete filter.product_category;
+            }
+
             const select = [
                 "_id",
                 "product_name",

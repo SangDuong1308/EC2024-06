@@ -4,6 +4,8 @@ const crypto = require('crypto');
 const CryptoJS = require('crypto-js');
 const axios = require('axios');
 const configVnpay = require('../configs/config.vnpay');
+require('dotenv').config();
+
 
 const orderCallBack = 
     "https://buzzard-flying-seriously.ngrok-free.app/order/callback/zalopay"
@@ -135,6 +137,8 @@ module.exports = {
             order.embed_data +
             "|" +
             order.item;
+        console.log("data:::", data);
+        console.log("config:::", config);
         order.mac = CryptoJS.HmacSHA256(data, config.key1).toString();
 
         try {
@@ -143,6 +147,7 @@ module.exports = {
             });
             return { ...result.data, app_trans_id: order.app_trans_id };
         } catch (err) {
+            console.error("Error in getZaloPayUrl", err);
             throw new Error(err.message);
         }
     },

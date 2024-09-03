@@ -5,7 +5,7 @@ const { BadRequest } = require("../constants/error.reponse")
 
 module.exports = {
     async findCartByUserId(userId, unSelect = []) {
-        return cartModel.findOne({cart_user: new Types.ObjectId(userId)}).select(unSelectData(unSelect)).lean()
+        return cartModel.findOne({cart_user: new Types.ObjectId(userId)}).select(unSelectData(unSelect))
     },
     async findCartByUserIdAndUpdate(userId, update) {
         return await cartModel.findOneAndUpdate({

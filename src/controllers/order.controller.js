@@ -1,3 +1,4 @@
+const { log } = require("console");
 const { SHOP_LOCATION } = require("../constants");
 const { Api404Error, InternalServerError, BadRequest } = require("../constants/error.reponse");
 const temporaryOrderModel = require("../models/temporaryOrder.model");
@@ -57,15 +58,16 @@ module.exports = {
     // middleware for cash | vnpay
     async checkoutPreProcess(req, res, next) {
         const { userId } = req.user;
-        const { type, latlng, street } = req.body;
-        if (!type || !latlng || !street)
-            next(new BadRequest(`Missing type | latlng | street in req.body`));
+        const { type, latlng, address } = req.body;
+        console.log('Address;:',address);
+        // if (!type || !latlng || !street)
+        //     next(new BadRequest(`Missing type | latlng | street in req.body`));
 
-        const address = {
-            type,
-            latlng,
-            street,
-        };
+        // const address = {
+        //     type,
+        //     latlng,
+        //     street,
+        // };
         const foundCart = await cartService.findCartByUserId(userId);
         if (
             !foundCart ||
@@ -75,26 +77,26 @@ module.exports = {
             next(new Api404Error("Cart Not Found Or Empty"));
         console.log("foundCart.cart_products:::", foundCart.cart_products);
 
-        console.log("==========");
-        console.log(latlng.lat);
-        console.log(latlng.lng);
-        console.log(SHOP_LOCATION.Lat);
-        console.log(SHOP_LOCATION.Lng);
-        console.log("==========");
+        // console.log("==========");
+        // console.log(latlng.lat);
+        // console.log(latlng.lng);
+        // console.log(SHOP_LOCATION.Lat);
+        // console.log(SHOP_LOCATION.Lng);
+        // console.log("==========");
 
-        const distanceShopUser = distanceBetweenTwoPoints(
-            latlng.lat,
-            latlng.lng,
-            SHOP_LOCATION.Lat,
-            SHOP_LOCATION.Lng
-        );
+        // const distanceShopUser = distanceBetweenTwoPoints(
+        //     latlng.lat,
+        //     latlng.lng,
+        //     SHOP_LOCATION.Lat,
+        //     SHOP_LOCATION.Lng
+        // );
 
-        const shippingFee = findShippingFee(distanceShopUser);
-        if (shippingFee == null)
-            next(new BadRequest(`So far to ship ${distanceShopUser}km`));
+        const shippingFee = 0;
+        // if (shippingFee == null)
+        //     next(new BadRequest(`So far to ship ${distanceShopUser}km`));
 
-        console.log("shippingFee::", shippingFee);
-        console.log("distanceShopUser::", distanceShopUser);
+        // console.log("shippingFee::", shippingFee);
+        // console.log("distanceShopUser::", distanceShopUser);
 
         const orderInfo = await orderService.getOrderInfo(
             userId,
@@ -119,6 +121,7 @@ module.exports = {
 
         console.log("createdOrder with cash:::", createdOrder);
         res.status(201).json({
+            metadata: createdOrder,
             message: "Create order successfully",
         })
     },
@@ -126,14 +129,14 @@ module.exports = {
     async checkoutZalo(req, res) {
         const orderInfo = req.orderInfo;
         orderInfo.paymentMethod = "zalopay";
-        console.log("orderInfo.totalPrice:::", orderInfo.totalPrice);
+        console.log("orderInfo.totalPrice:::", orderInfo);
 
         try {
             const result = await paymentService.getZaloPayUrl(
                 orderInfo.list_products,
                 orderInfo.totalPrice
             );
-
+            console.log('Result',result);
             //1. tao ra 1 don hang tam trong 15 phut
             // check result thanh cong hay chua
             const expiryTime = new Date();
@@ -150,6 +153,7 @@ module.exports = {
                 metadata: result.order_url || "",
             });
         } catch (err) {
+            console.log("Error occurred when access payment gateway:", err);
             throw new BadRequest("Error occurred when access payment gateway");
         }
     },
