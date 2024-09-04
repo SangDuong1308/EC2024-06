@@ -3,13 +3,22 @@ const productService = require("../services/product.service");
 
 module.exports = {
     async getAllProducts(req, res, next) {
-        const { limit = 50, sort = "ctime", page = 1, product_category  } = req.query;
-        console.log('Querry::', req.query);
+        const { limit = 50, sort = "ctime", page = 1, product_category, price  } = req.query;
+        
         try {
             const filter = { isActive: true, product_category};
             if(!filter.product_category){
                 delete filter.product_category;
             }
+
+            if(price && price.min){
+                filter.product_sell_price = {...filter.product_sell_price,  $gte: parseFloat(price.min) };
+            }
+
+            if(price && price.max){
+                filter.product_sell_price = {...filter.product_sell_price, $lte: parseFloat(price.max) };
+            }
+            console.log('filter::',filter);
 
             const select = [
                 "_id",

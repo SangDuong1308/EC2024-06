@@ -11,7 +11,7 @@ const santize = require('express-mongo-sanitize');
 const app = express();
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://ec-2024-06-frontend.vercel.app/',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
 };

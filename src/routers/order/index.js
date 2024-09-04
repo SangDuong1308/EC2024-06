@@ -17,6 +17,7 @@ router.get('/detail', asyncHandler(orderController.getOrderDetail))
 // checkout overview
 router.use(verifyRole(ROLES.User))
 router.get('/checkout/overview', asyncHandler(orderController.checkoutReview))
+router.get('/me', asyncHandler(orderController.getOrderByUser));
 
 // checkout by cash
 router.post('/checkout/cash', orderController.checkoutPreProcess ,asyncHandler(orderController.checkoutCash))

@@ -74,7 +74,7 @@ class CategoryController {
         try {
             const { categoryId } = req.params;
             let updatedCategory = req.body;
-
+            console.log('Params::', updatedCategory);
             if (!categoryId || !updatedCategory)
                 throw new BadRequest("Missing some information in body");
 

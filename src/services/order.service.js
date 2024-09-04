@@ -9,6 +9,9 @@ module.exports = {
     async findOrder(filter, select = []) {
         return await orderModel.findOne(filter).select({...getSelectData(select)}).lean()
     },
+    async findOrders(filter, select = []) {
+        return await orderModel.find(filter).select({...getSelectData(select)}).lean()
+    },
     async countSubPriceOfCart(list_product) {
         let subPrice = 0;
         const select = ["product_sell_price", "product_list_price"];

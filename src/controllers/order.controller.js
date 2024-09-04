@@ -55,6 +55,24 @@ module.exports = {
             },
         })
     },
+    async getOrderByUser(req, res){
+        const { userId } = req.user;
+        filter = {
+            "order_user._id": userId,
+        }
+
+        orders = await orderService.findOrders(filter);
+
+        if(!orders){
+            throw new Api404Error("Order not found");
+        }
+
+        res.status(200).json({
+            message: "Get order detail successfully",
+            metadata:  orders
+           
+        })
+    },
     // middleware for cash | vnpay
     async checkoutPreProcess(req, res, next) {
         const { userId } = req.user;
