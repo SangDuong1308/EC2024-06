@@ -57,11 +57,11 @@ module.exports = {
     },
     async getOrderByUser(req, res){
         const { userId } = req.user;
-        filter = {
+        let filter = {
             "order_user._id": userId,
         }
 
-        orders = await orderService.findOrders(filter);
+        let orders = await orderService.findOrders(filter);
 
         if(!orders){
             throw new Api404Error("Order not found");

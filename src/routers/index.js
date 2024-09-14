@@ -22,6 +22,7 @@ router.use('/admin', require('./admin'));
 router.use('/category', require('./category'));
 router.use('/product', require('./product'));
 router.use('/cart', require('./cart'));
+router.use('/review', require('./review'))
 // handle error for rq do not match any route 
 router.use('/', (req, res) => res.status(404).json('No API route found'));
 
