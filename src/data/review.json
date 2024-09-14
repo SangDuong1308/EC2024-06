@@ -1,0 +1,38 @@
+[
+  {
+    "review_userId": "66ccb3112989528594ccf7cd",
+    "review_productId": "64d60e1e2e4f6f0e1f1e2d5a",
+    "review_childId": null,
+    "review_orderId": "64d60e1e2e4f6f0e1f1e3a8f",
+    "review_type": 1,
+    "review_content_text": "This cake was absolutely delicious!",
+    "review_star": 5,
+    "review_title": "Great Taste!",
+    "review_date": "2024-08-15T10:30:00.000Z",
+    "isDelete": false
+  },
+  {
+    "review_userId": "66ccb3112989528594ccf7cd",
+    "review_productId": "64d60e1e2e4f6f0e1f1e2d6b",
+    "review_childId": null,
+    "review_orderId": "64d60e1e2e4f6f0e1f1e3a9c",
+    "review_type": 1,
+    "review_content_text": "I loved the texture of this cake. Would recommend!",
+    "review_star": 4,
+    "review_title": "Nice Texture!",
+    "review_date": "2024-08-16T14:00:00.000Z",
+    "isDelete": false
+  },
+  {
+    "review_userId": "66ccb3112989528594ccf7cd",
+    "review_productId": "64d60e1e2e4f6f0e1f1e2d7c",
+    "review_childId": null,
+    "review_orderId": "64d60e1e2e4f6f0e1f1e3a9f",
+    "review_type": 1,
+    "review_content_text": "This cake was good, but a bit too sweet for my taste.",
+    "review_star": 3,
+    "review_title": "Too Sweet",
+    "review_date": "2024-08-17T09:20:00.000Z",
+    "isDelete": false
+  }
+]

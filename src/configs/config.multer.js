@@ -18,13 +18,13 @@ const storage = (destinationFolder) =>
     });
 
 const upload = multer({ storage: storage("src/uploads") });
-const uploadComment = multer({ storage: storage("src/uploads/comments") });
+const uploadReview = multer({ storage: storage("src/uploads/reviews") });
 const uploadShop = multer({ storage: storage("src/uploads/shops") });
 
 const convert_formData = multer();
 module.exports = {
     upload,
-    uploadComment,
+    uploadReview,
     convert_formData,
     uploadShop
 };
