@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  #MongoDB
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    volumes:
+      - mongo_db:/data/db
+    ports:
+      - 27017:27017
+
+  node-app:
+    build: 
+        context: .
+    ports:
+        - 8080:8080
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./package.json:/usr/src/app/package.json
+      - ./package-lock.json:/usr/src/app/package-lock.json
+      - /app/node_modules
+    env_file:
+        - path: ./.env
+    restart: no
+    depends_on:
+        - mongodb
+
+volumes:
+  mongo_db: {}
