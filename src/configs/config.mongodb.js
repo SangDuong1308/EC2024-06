@@ -5,7 +5,7 @@ const dev = {
         port: process.env.DEV_APP_PORT || 3052,
     },
     db: {
-        host: process.env.DEV_DB_HOST || 'mongodb+srv://duongphuocsang1308:Sang13082003@metrics.oygpt3c.mongodb.net',
+        host: process.env.DEV_DB_HOST || 'mongodb+srv://localhost',
         port: process.env.DEV_DB_PORT || 27017,
         name: process.env.DEV_DB_NAME || 'ecomDEV',
     },
