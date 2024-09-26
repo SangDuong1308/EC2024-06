@@ -8,6 +8,8 @@ const swaggerDocs = require('./utils/swagger');
 const { Api404Error } = require('./constants/error.reponse');
 const cookieParser = require("cookie-parser");
 const santize = require('express-mongo-sanitize');
+const swaggerDocument = require('./docs/swagger.json');
+const swaggerUi = require('swagger-ui-express');
 const app = express();
 
 const corsOptions = {
@@ -33,9 +35,10 @@ app.use(express.urlencoded({ extended: true }));
 // init db
 require('./dbs/init.mongodb');
 
-// init routes
+// swaggerDocs(app, process.env.PORT);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-swaggerDocs(app, process.env.PORT);
+// init routes
 app.use(santize())
 app.use('/', require('./routers'));
 

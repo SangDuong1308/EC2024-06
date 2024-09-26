@@ -15,7 +15,7 @@ const orderSchema = new Schema(
     {
         order_state: {
             type: String,
-            enum: ["pending", "shipping", "success", "failure"],
+            enum: ["pending", "success", "shipping", "failure"],
             default: "pending",
         },
         order_user: {

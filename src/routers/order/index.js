@@ -7,6 +7,8 @@ const router = express.Router();
 
 // VNPAY payment return
 router.get('/vnpay_return', asyncHandler(orderController.handleVnpReturn))
+// VNPAY IPN handle
+router.get('/vnpay_ipn', asyncHandler(orderController.handleVnpIpn));
 
 // ZALO PAY callback
 router.post('/callback/zalopay', asyncHandler(orderController.handleZalopayCallback))
@@ -23,7 +25,7 @@ router.get('/me', asyncHandler(orderController.getOrderByUser));
 router.post('/checkout/cash', orderController.checkoutPreProcess ,asyncHandler(orderController.checkoutCash))
 
 // checkout with vnpay
-router.post('/create_payment_url', asyncHandler(orderController.getVnpUrl))
+router.post('/create_payment_url', orderController.checkoutPreProcess,asyncHandler(orderController.checkoutVnpay))
 
 // checkout with zalopay
 router.post('/checkout/zalopay', orderController.checkoutPreProcess, asyncHandler(orderController.checkoutZalo))
