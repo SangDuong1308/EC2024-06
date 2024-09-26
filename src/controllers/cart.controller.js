@@ -27,7 +27,7 @@ module.exports = {
     },
     async addProductToCart(req, res) {
         const { userId } = req.user;
-        const { productId, quantity = 1 } = req.body;
+        const { productId, quantity = 1 } = req.query;
 
         if (!productId) throw new BadRequest("Missing productId");
         if (quantity < 0)

@@ -7,6 +7,8 @@ const orderService = require("../services/order.service");
 const paymentService = require("../services/payment.service");
 const { findShippingFee, distanceBetweenTwoPoints } = require("../utils");
 const CryptoJS = require("crypto-js");
+const chalk = require("chalk");
+const axios = require("axios");
 
 module.exports = {
     async checkoutReview(req, res) {
@@ -76,16 +78,15 @@ module.exports = {
     // middleware for cash | vnpay
     async checkoutPreProcess(req, res, next) {
         const { userId } = req.user;
-        const { type, latlng, address } = req.body;
-        console.log('Address;:',address);
-        // if (!type || !latlng || !street)
-        //     next(new BadRequest(`Missing type | latlng | street in req.body`));
+        const { type, latlng, street } = req.body;
+        if (!type || !latlng || !street)
+            next(new BadRequest(`Missing type | latlng | street in req.body`));
 
-        // const address = {
-        //     type,
-        //     latlng,
-        //     street,
-        // };
+        const address = {
+            type,
+            latlng,
+            street,
+        };
         const foundCart = await cartService.findCartByUserId(userId);
         if (
             !foundCart ||
@@ -95,26 +96,26 @@ module.exports = {
             next(new Api404Error("Cart Not Found Or Empty"));
         console.log("foundCart.cart_products:::", foundCart.cart_products);
 
-        // console.log("==========");
-        // console.log(latlng.lat);
-        // console.log(latlng.lng);
-        // console.log(SHOP_LOCATION.Lat);
-        // console.log(SHOP_LOCATION.Lng);
-        // console.log("==========");
+        console.log("==========");
+        console.log(latlng.lat);
+        console.log(latlng.lng);
+        console.log(SHOP_LOCATION.Lat);
+        console.log(SHOP_LOCATION.Lng);
+        console.log("==========");
 
-        // const distanceShopUser = distanceBetweenTwoPoints(
-        //     latlng.lat,
-        //     latlng.lng,
-        //     SHOP_LOCATION.Lat,
-        //     SHOP_LOCATION.Lng
-        // );
+        const distanceShopUser = distanceBetweenTwoPoints(
+            latlng.lat,
+            latlng.lng,
+            SHOP_LOCATION.Lat,
+            SHOP_LOCATION.Lng
+        );
 
-        const shippingFee = 0;
-        // if (shippingFee == null)
-        //     next(new BadRequest(`So far to ship ${distanceShopUser}km`));
+        const shippingFee = findShippingFee(distanceShopUser);
+        if (shippingFee == null)
+            next(new BadRequest(`So far to ship ${distanceShopUser}km`));
 
-        // console.log("shippingFee::", shippingFee);
-        // console.log("distanceShopUser::", distanceShopUser);
+        console.log("shippingFee::", shippingFee);
+        console.log("distanceShopUser::", distanceShopUser);
 
         const orderInfo = await orderService.getOrderInfo(
             userId,
@@ -154,12 +155,10 @@ module.exports = {
                 orderInfo.list_products,
                 orderInfo.totalPrice
             );
-            console.log('Result',result);
-            //1. tao ra 1 don hang tam trong 15 phut
-            // check result thanh cong hay chua
             const expiryTime = new Date();
             expiryTime.setMinutes(expiryTime.getMinutes() + 15);
 
+            // zalopay gateway transaction take 15mins
             await temporaryOrderModel.create({
                 order_info: orderInfo,
                 app_trans_id: result.app_trans_id,
@@ -227,21 +226,94 @@ module.exports = {
         res.json(result);
     },
 
-    async getVnpUrl(req, res) {
-        const VnpUrl = paymentService.getVnpUrl(req);
-        // res.status(200).send(VnpUrl);
-        console.log("VnpUrl:::", VnpUrl);
-        res.status(200).redirect(VnpUrl);
+    // async getVnpUrl(req, res) {
+    //     const VnpUrl = paymentService.getVnpUrl(req);
+    //     // res.status(200).send(VnpUrl);
+    //     console.log("VnpUrl:::", VnpUrl);
+    //     res.status(200).redirect(VnpUrl);
+    // },
+
+    // Create VnPay url 
+    async checkoutVnpay(req, res) {
+        const orderInfo = req.orderInfo;
+        orderInfo.paymentMethod = "vnpay";
+        req.amount = orderInfo.totalPrice;
+
+        console.log("OrderInfo:::", orderInfo);
+
+        try {
+            const result = await paymentService.getVnpUrl(req);
+            const { orderId } = result;
+            
+            console.log('PaymentUrl:::', result.vnpUrl);
+            console.log('vnp_TxnRef:::', orderId);
+
+            const expiryTime = new Date();
+            expiryTime.setMinutes(expiryTime.getMinutes() + 15);
+
+            await temporaryOrderModel.create({
+              order_info: orderInfo,
+              time: expiryTime,
+              app_trans_id: orderId,
+            });
+
+            res.status(200).json({
+                message: "Success",
+                metadata: result || "",
+            })
+        } catch(err) {
+            console.log('Error occurred when access payment gateway:', err);
+            throw new BadRequest('Error occurred when access payment gateway');
+        }
     },
+
+    // Redirect the user base on VnPay response code, redirect to FE
     async handleVnpReturn(req, res) {
         const result = paymentService.getVnPayResult(req);
-        // res.status(200).send(result);
+        // console.log("Handle Vnpay Return is here:::", result);
+        console.log(chalk.yellow("Handle Vnpay Return is here:::"), result);
         const redirectUrl = process.env.REDIRECT_LINK;
-        console.log("Redirect link:::", redirectUrl);
-        if (result.code === "00") {
-            res.redirect(redirectUrl);
+        try {
+            // Redirect the user after forwardin
+            const ipnUrl = process.env.VNP_PAYMENT_IPN;
+            console.log(chalk.yellowBright("IPN URL:::"), ipnUrl);
+            console.log(chalk.green('Request queries:::'), req.query);
+
+            const ipnResponse = await axios.get(ipnUrl, {
+                params: req.query,
+            });
+
+            console.log('IPN Forward Response:::', ipnResponse.data);
+            
+            if (result.code === '00') {
+                res.redirect(redirectUrl);
+            } else {
+              res.redirect(redirectUrl);
+            }
+        } catch (error) {
+            console.error('Error forwarding to vnpay_ipn:', error);
+            res.redirect(redirectUrl); 
+        }
+    },
+
+    // Handle VnPay response code, update order status
+    async handleVnpIpn(req, res) {
+        const result = paymentService.getVnpIpn(req);
+        console.log(result);
+    
+        if (result.RspCode === '00') {
+            const tempOrder = await temporaryOrderModel.findOneAndDelete({
+              app_trans_id: result.OrderId,
+            });
+
+            if (!tempOrder || !tempOrder.order_info)
+              throw new BadRequest('Order Expired, Please try again');
+
+            const createdOrder = await orderService.createOrder(tempOrder.order_info);
+
+            res.status(200).json({ RspCode: '00', Message: 'Success' });
         } else {
-            res.redirect(redirectUrl);
+            res.status(200).json({ RspCode: '97', Message: 'Fail checksum' });
         }
     }
 }
